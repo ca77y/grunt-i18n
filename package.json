@@ -1,0 +1,23 @@
+{
+    "name": "grunt-i18n",
+    "version": "0.1.0",
+    "main": "Gruntfile.coffee",
+    "engines": {
+        "node": "0.10.x",
+        "npm": "1.2.x"
+    },
+    "scripts": {
+        "test": "grunt test"
+    },
+    "devDependencies": {
+        "grunt-contrib-nodeunit": "~0.1.2",
+        "grunt-contrib-clean": "~0.4.0",
+        "grunt-coffeelint": "~0.0.6"
+    },
+    "peerDependencies": {
+        "grunt": "~0.4.0"
+    },
+    "keywords": [
+        "gruntplugin"
+    ]    
+}

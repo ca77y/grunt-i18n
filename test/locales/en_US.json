@@ -1,0 +1,8 @@
+{
+    "options": {
+        "outputFolder": "en"
+    },
+    "data": {
+        "message": "Hello world!"
+    }
+}
