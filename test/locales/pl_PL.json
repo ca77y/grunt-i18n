@@ -1,8 +1,6 @@
 {
-    "options": {
-        "outputFolder": "pl"
-    },
-    "data": {
-        "message": "Witaj świecie!"
+    "message": "Witaj świecie!",
+    "nested": {
+        "msg": "i Tobie witaj"
     }
 }

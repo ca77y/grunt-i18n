@@ -1,10 +1,28 @@
 {
     "name": "grunt-i18n",
-    "version": "0.1.0",
+    "description": "Internationalization and translation of templates.",
+    "version": "0.2.0",
+    "homepage": "https://github.com/ca77y/grunt-i18n",
+    "author": {
+        "name": "ca77y",
+        "url": "https://github.com/ca77y"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/ca77y/grunt-i18n.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ca77y/grunt-i18n/issues"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/gruntjs/grunt-contrib-copy/blob/master/LICENSE-MIT"
+        }
+    ],
     "main": "Gruntfile.coffee",
     "engines": {
-        "node": "0.10.x",
-        "npm": "1.2.x"
+        "node": ">= 0.8.0"
     },
     "scripts": {
         "test": "grunt test"
