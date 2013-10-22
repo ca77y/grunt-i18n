@@ -20,7 +20,7 @@
             "url": "https://github.com/gruntjs/grunt-contrib-copy/blob/master/LICENSE-MIT"
         }
     ],
-    "main": "Gruntfile.coffee",
+    "main": "tasks/i18n.js",
     "engines": {
         "node": ">= 0.8.0"
     },
@@ -30,6 +30,7 @@
     "devDependencies": {
         "grunt-contrib-nodeunit": "~0.1.2",
         "grunt-contrib-clean": "~0.4.0",
+        "grunt-contrib-coffee": "~0.7.0",
         "grunt-coffeelint": "~0.0.6"
     },
     "peerDependencies": {
@@ -37,5 +38,5 @@
     },
     "keywords": [
         "gruntplugin"
-    ]    
+    ]
 }

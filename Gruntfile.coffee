@@ -2,7 +2,7 @@ module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
 
-    clean: ['tmp']
+    clean: ['tmp', 'lib']
 
     coffeelint:
       tasks: 'tasks/**/*.coffee'
@@ -20,6 +20,13 @@ module.exports = (grunt) ->
           value: 2
           level: 'error'
 
+    coffee:
+      tasks:
+        files:
+          'tasks/i18n.js': 'src/i18n.coffee'
+      options:
+        bare: true
+
     i18n:
       hello_world:
         src: ['test/fixtures/*.tpl.html']
@@ -31,10 +38,12 @@ module.exports = (grunt) ->
     nodeunit:
       tests: ['test/*_test.coffee']
 
-  grunt.loadTasks 'tasks'
+  grunt.loadTasks 'src'
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-coffeelint'
+  grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-nodeunit'
 
+  grunt.registerTask 'default', ['clean', 'coffeelint', 'coffee']
   grunt.registerTask 'test', ['clean', 'coffeelint', 'i18n', 'nodeunit']

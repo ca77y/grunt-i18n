@@ -26,3 +26,5 @@ module.exports = (grunt) ->
     filepath = filepath.slice options.base.length if grunt.util._.startsWith filepath, options.base
     filepath = grunt.util._.trim filepath, path.sep
     [options.output, localeFolder, filepath].join path.sep
+
+  return @
