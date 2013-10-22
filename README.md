@@ -1,4 +1,4 @@
-# grunt-i18n
+# grunt-i18n [![Build Status](https://travis-ci.org/ca77y/grunt-i18n.png)](https://travis-ci.org/ca77y/grunt-i18n)
 
 > Internationalization support for grunt.
 
