@@ -33,5 +33,6 @@ Type: String
 Base folder for HTML templates which should not be preserved while translating. Please check the tests if you don't get it ;)
 
 ## Release History
+* 2013-10-23   v0.3.0   Fix for separator in output path. Add logging messages.
 * 2013-10-22   v0.2.0   Might be useful for others
 * 2013-05-28   v0.1.0   Initial release, not really useful for anybody except me ;)

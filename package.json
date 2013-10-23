@@ -1,7 +1,7 @@
 {
     "name": "grunt-i18n",
     "description": "Internationalization and translation of templates.",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "homepage": "https://github.com/ca77y/grunt-i18n",
     "author": {
         "name": "ca77y",
