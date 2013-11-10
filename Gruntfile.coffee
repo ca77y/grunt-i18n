@@ -1,4 +1,6 @@
 module.exports = (grunt) ->
+  grunt.template.addDelimiters('custom', '{%', '%}')
+
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
 
@@ -29,11 +31,18 @@ module.exports = (grunt) ->
 
     i18n:
       hello_world:
-        src: ['test/fixtures/*.tpl.html']
+        src: ['test/fixtures/test.tpl.html']
         options:
           locales: 'test/locales/*'
           output: 'tmp'
           base: 'test/fixtures'
+      hello_world_custom_delimiters:
+        src: ['test/fixtures/test-custom-delimiters.tpl.html']
+        options:
+          locales: 'test/locales/*'
+          output: 'tmp'
+          base: 'test/fixtures'
+          delimiters: 'custom'
 
     nodeunit:
       tests: ['test/*_test.coffee']
