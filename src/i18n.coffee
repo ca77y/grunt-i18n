@@ -9,25 +9,28 @@ module.exports = (grunt) ->
 
     grunt.verbose.writeflags options, 'Options'
 
-    for filepath in @filesSrc
+    for templatePath in @filesSrc
+      if not grunt.file.isFile templatePath
+        grunt.fail.warn("#{templatePath} is not a file.")
+
       localePaths = grunt.file.expand options.locales
       for localePath in localePaths
-        translateTemplates filepath, localePath, options
+        outputPath = generateOutputPath templatePath, localePath, options
+        template = translateTemplate templatePath, localePath, options
+        grunt.verbose.writeln "Translating '#{templatePath}' with locale '#{localePath}' to '#{outputPath}'."
+        grunt.file.write outputPath, template
 
-  translateTemplates = (templatePath, localePath, options) ->
+  translateTemplate = (templatePath, localePath, options) ->
     template = grunt.file.read templatePath
     locale = grunt.file.readJSON localePath
-    templateOptions = {data: locale}
+    templateOptions = data: locale
     templateOptions.delimiters = options.delimiters if options.delimiters
-    localizedTemplate = grunt.template.process template, templateOptions
-    outputFolder = path.basename localePath, path.extname localePath
-    output = generateOutputPath outputFolder, templatePath, options
-    grunt.verbose.writeln "Translating '#{templatePath}' with locale '#{localePath}' to '#{output}'"
-    grunt.file.write output, localizedTemplate
+    grunt.template.process template, templateOptions
 
-  generateOutputPath = (localeFolder, filepath, options) ->
-    filepath = filepath.slice options.base.length if grunt.util._.startsWith filepath, options.base
-    filepath = grunt.util._.trim filepath, '/'
-    [options.output, localeFolder, filepath].join '/'
+  generateOutputPath = (templatePath, localePath, options) ->
+    localeFolder = path.basename localePath, path.extname localePath
+    filePath = templatePath.slice options.base.length if grunt.util._.startsWith templatePath, options.base
+    trimmedFilePath = grunt.util._.trim filePath, '/'
+    [options.output, localeFolder, trimmedFilePath].join '/'
 
   return @

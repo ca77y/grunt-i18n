@@ -28,21 +28,19 @@ module.exports = (grunt) ->
           'tasks/i18n.js': 'src/i18n.coffee'
       options:
         bare: true
+        header: true
 
     i18n:
-      hello_world:
+      happy_path:
         src: ['test/fixtures/test.tpl.html']
-        options:
-          locales: 'test/locales/*'
-          output: 'tmp'
-          base: 'test/fixtures'
-      hello_world_custom_delimiters:
+      custom_delimiters:
         src: ['test/fixtures/test-custom-delimiters.tpl.html']
         options:
-          locales: 'test/locales/*'
-          output: 'tmp'
-          base: 'test/fixtures'
           delimiters: 'custom'
+      options:
+        locales: 'test/locales/*'
+        output: 'tmp'
+        base: 'test/fixtures'
 
     nodeunit:
       tests: ['test/*_test.coffee']
