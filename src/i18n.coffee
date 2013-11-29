@@ -17,7 +17,9 @@ module.exports = (grunt) ->
   translateTemplates = (templatePath, localePath, options) ->
     template = grunt.file.read templatePath
     locale = grunt.file.readJSON localePath
-    localizedTemplate = grunt.template.process template, {data: locale}
+    templateOptions = {data: locale}
+    templateOptions.delimiters = options.delimiters if options.delimiters
+    localizedTemplate = grunt.template.process template, templateOptions
     outputFolder = path.basename localePath, path.extname localePath
     output = generateOutputPath outputFolder, templatePath, options
     grunt.verbose.writeln "Translating '#{templatePath}' with locale '#{localePath}' to '#{output}'"

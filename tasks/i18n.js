@@ -30,12 +30,16 @@ module.exports = function(grunt) {
     return _results;
   });
   translateTemplates = function(templatePath, localePath, options) {
-    var locale, localizedTemplate, output, outputFolder, template;
+    var locale, localizedTemplate, output, outputFolder, template, templateOptions;
     template = grunt.file.read(templatePath);
     locale = grunt.file.readJSON(localePath);
-    localizedTemplate = grunt.template.process(template, {
+    templateOptions = {
       data: locale
-    });
+    };
+    if (options.delimiters) {
+      templateOptions.delimiters = options.delimiters;
+    }
+    localizedTemplate = grunt.template.process(template, templateOptions);
     outputFolder = path.basename(localePath, path.extname(localePath));
     output = generateOutputPath(outputFolder, templatePath, options);
     grunt.verbose.writeln("Translating '" + templatePath + "' with locale '" + localePath + "' to '" + output + "'");
