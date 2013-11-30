@@ -5,7 +5,7 @@
 ## Getting started
 This plugin requires Grunt `~0.4.0`
 
-Please note this a coffeescript task and the sources are located in src folder, javascript is generated.
+Please note this is a coffeescript task and the sources are located in src folder, javascript is generated.
 
 ## i18n task
 _Run this task with the `grunt i18n` command._
