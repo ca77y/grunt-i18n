@@ -26,3 +26,16 @@ exports.i18n =
     test.equal expected, actual, 'should translate a template with custom delimiters to polish'
 
     test.done()
+
+  should_translate_regular_grunt_templates_with_yaml_source: (test) ->
+    test.expect 2
+
+    expected = grunt.file.read 'test/expected/en_US/test.tpl.html'
+    actual = grunt.file.read 'tmp/en_US/test-yaml.tpl.html'
+    test.equal expected, actual, 'should translate a template to english (with YAML source)'
+
+    expected = grunt.file.read 'test/expected/pl_PL/test.tpl.html'
+    actual = grunt.file.read 'tmp/pl_PL/test-yaml.tpl.html'
+    test.equal expected, actual, 'should translate a template to polish (with YAML source)'
+
+    test.done()
