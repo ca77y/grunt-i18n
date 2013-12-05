@@ -22,7 +22,10 @@ module.exports = (grunt) ->
 
   translateTemplate = (templatePath, localePath, options) ->
     template = grunt.file.read templatePath
-    locale = grunt.file.readJSON localePath
+    if /(\.yaml|\.yml)$/.test( localePath ) 
+      locale = grunt.file.readYAML localePath
+    else
+      locale = grunt.file.readJSON localePath
     templateOptions = data: locale
     templateOptions.delimiters = options.delimiters if options.delimiters
     grunt.template.process template, templateOptions

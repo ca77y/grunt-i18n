@@ -39,7 +39,11 @@ module.exports = function(grunt) {
   translateTemplate = function(templatePath, localePath, options) {
     var locale, template, templateOptions;
     template = grunt.file.read(templatePath);
-    locale = grunt.file.readJSON(localePath);
+    if (/(\.yaml|\.yml)$/.test(localePath)) {
+      locale = grunt.file.readYAML(localePath);
+    } else {
+      locale = grunt.file.readJSON(localePath);
+    }
     templateOptions = {
       data: locale
     };

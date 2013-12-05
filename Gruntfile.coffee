@@ -37,8 +37,12 @@ module.exports = (grunt) ->
         src: ['test/fixtures/test-custom-delimiters.tpl.html']
         options:
           delimiters: 'custom'
+      with_yaml:
+        src: ['test/fixtures/test-yaml.tpl.html']
+        options:
+          locales: 'test/locales/*.yaml'
       options:
-        locales: 'test/locales/*'
+        locales: 'test/locales/*.json'
         output: 'tmp'
         base: 'test/fixtures'
 
