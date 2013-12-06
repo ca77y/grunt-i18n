@@ -22,7 +22,7 @@ Available options to configure the task.
 #### locales
 Type: String|Array
 
-Path to localization files. Please check the examples in tests. Glob patterns can be used.
+Path to localization files. Please check the examples in tests. Glob patterns can be used. JSON or YAML format is allowed, /(\.yaml|\.yml)$/ otherwise it's JSON.
 
 #### output
 Type: String
@@ -40,6 +40,7 @@ Type: String
 Custom delimiters name to be used instead of the default `<% %>`. See the [grunt.template documentation](http://gruntjs.com/api/grunt.template) for more details.
 
 ## Release History
+* 2013-12-06   v0.5.0   Can read locals in yaml format.
 * 2013-11-29   v0.4.0   Custom delimiters and localization file existence checks
 * 2013-10-23   v0.3.0   Fix for separator in output path. Add logging messages
 * 2013-10-22   v0.2.0   Might be useful for others
