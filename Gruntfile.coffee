@@ -33,17 +33,21 @@ module.exports = (grunt) ->
     i18n:
       happy_path:
         src: ['test/fixtures/test.tpl.html']
+        options:
+          locales: 'test/locales/*.json'
+          output: 'tmp/json'
       custom_delimiters:
         src: ['test/fixtures/test-custom-delimiters.tpl.html']
         options:
+          locales: 'test/locales/*.json'
+          output: 'tmp/json'
           delimiters: 'custom'
       with_yaml:
-        src: ['test/fixtures/test-yaml.tpl.html']
+        src: ['test/fixtures/test.tpl.html']
         options:
           locales: 'test/locales/*.yaml'
+          output: 'tmp/yaml'
       options:
-        locales: 'test/locales/*.json'
-        output: 'tmp'
         base: 'test/fixtures'
 
     nodeunit:
