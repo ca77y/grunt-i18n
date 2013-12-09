@@ -39,6 +39,26 @@ Type: String
 
 Custom delimiters name to be used instead of the default `<% %>`. See the [grunt.template documentation](http://gruntjs.com/api/grunt.template) for more details.
 
+#### transifex
+Type: Bool
+
+Locales from Transifex have all their translations below one root property, the name of the translation. Setting this to true compensates for this, so you can use Transifex with your project. For example,
+
+```yaml
+en_US:
+  message: Hello world!
+  nested:
+    msg: and hello to you
+```
+
+Becomes
+
+```yaml
+message: Hello world!
+nested:
+  msg: and hello to you
+```
+
 ## Release History
 * 2013-12-06   v0.5.0   Can read locals in yaml format.
 * 2013-11-29   v0.4.0   Custom delimiters and localization file existence checks
