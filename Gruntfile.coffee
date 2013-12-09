@@ -47,6 +47,12 @@ module.exports = (grunt) ->
         options:
           locales: 'test/locales/*.yaml'
           output: 'tmp/yaml'
+      with_transifex:
+        src: ['test/fixtures/test.tpl.html']
+        options:
+          locales: 'test/locales-transifex/*.yaml'
+          output: 'tmp/transifex'
+          transifex: true
       options:
         base: 'test/fixtures'
 

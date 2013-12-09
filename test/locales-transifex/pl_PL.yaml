@@ -1,0 +1,4 @@
+pl_PL:
+  message: Witaj świecie!
+  nested:
+    msg: i Tobie witaj
