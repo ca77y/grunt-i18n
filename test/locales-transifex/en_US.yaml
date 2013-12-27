@@ -1,0 +1,4 @@
+en_US:
+  message: Hello world!
+  nested:
+    msg: and hello to you

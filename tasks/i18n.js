@@ -37,12 +37,16 @@ module.exports = function(grunt) {
     return _results;
   });
   translateTemplate = function(templatePath, localePath, options) {
-    var locale, template, templateOptions;
+    var keys, locale, template, templateOptions;
     template = grunt.file.read(templatePath);
     if (/(\.yaml|\.yml)$/.test(localePath)) {
       locale = grunt.file.readYAML(localePath);
     } else {
       locale = grunt.file.readJSON(localePath);
+    }
+    keys = Object.keys(locale);
+    if (keys.length === 1 && typeof locale[keys[0]] === 'object') {
+      locale = locale[keys[0]];
     }
     templateOptions = {
       data: locale

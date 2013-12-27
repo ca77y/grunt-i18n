@@ -22,10 +22,17 @@ module.exports = (grunt) ->
 
   translateTemplate = (templatePath, localePath, options) ->
     template = grunt.file.read templatePath
-    if /(\.yaml|\.yml)$/.test( localePath ) 
+    if /(\.yaml|\.yml)$/.test( localePath )
       locale = grunt.file.readYAML localePath
     else
       locale = grunt.file.readJSON localePath
+
+    # locales from Transifex have one property to name the particular locale, with the
+    # translations all below that. E.G. { "en": {"message": "Hello, world!"} }
+    if options.transifex
+      keys = Object.keys locale
+      if keys.length is 1 and typeof locale[keys[0]] is 'object' then locale = locale[keys[0]]
+
     templateOptions = data: locale
     templateOptions.delimiters = options.delimiters if options.delimiters
     grunt.template.process template, templateOptions
