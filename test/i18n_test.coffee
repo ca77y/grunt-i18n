@@ -18,11 +18,11 @@ exports.i18n =
     test.expect 2
 
     expected = grunt.file.read 'test/expected/en_US/test.tpl.html'
-    actual = grunt.file.read 'tmp/json/en_US/test-custom-delimiters.tpl.html'
+    actual = grunt.file.read 'tmp/custom/en_US/test-custom-delimiters.tpl.html'
     test.equal expected, actual, 'should translate a template with custom delimiters to english'
 
     expected = grunt.file.read 'test/expected/pl_PL/test.tpl.html'
-    actual = grunt.file.read 'tmp/json/pl_PL/test-custom-delimiters.tpl.html'
+    actual = grunt.file.read 'tmp/custom/pl_PL/test-custom-delimiters.tpl.html'
     test.equal expected, actual, 'should translate a template with custom delimiters to polish'
 
     test.done()

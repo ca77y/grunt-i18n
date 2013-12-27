@@ -7,7 +7,7 @@ module.exports = (grunt) ->
     clean: ['tmp', 'lib']
 
     coffeelint:
-      tasks: 'tasks/**/*.coffee'
+      tasks: 'src/**/*.coffee'
       test: 'test/**/*.coffee'
       grunt: 'Gruntfile.coffee'
       options:
@@ -36,11 +36,11 @@ module.exports = (grunt) ->
         options:
           locales: 'test/locales/*.json'
           output: 'tmp/json'
-      custom_delimiters:
+      with_custom_delimiters:
         src: ['test/fixtures/test-custom-delimiters.tpl.html']
         options:
           locales: 'test/locales/*.json'
-          output: 'tmp/json'
+          output: 'tmp/custom'
           delimiters: 'custom'
       with_yaml:
         src: ['test/fixtures/test.tpl.html']
