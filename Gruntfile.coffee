@@ -52,7 +52,7 @@ module.exports = (grunt) ->
         options:
           locales: 'test/locales-transifex/*.yaml'
           output: 'tmp/transifex'
-          transifex: true
+          format: 'transifex'
       options:
         base: 'test/fixtures'
 

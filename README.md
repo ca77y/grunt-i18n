@@ -39,24 +39,24 @@ Type: String
 
 Custom delimiters name to be used instead of the default `<% %>`. See the [grunt.template documentation](http://gruntjs.com/api/grunt.template) for more details.
 
-#### transifex
-Type: Bool
+#### format
+Type: String
 
-Locales from Transifex have all their translations below one root property, the name of the translation. Setting this to true compensates for this, so you can use Transifex with your project. For example,
+Supports 'default' and 'transifex' format.
 
+Default locale just uses what it reads from the file. A valid yaml would look like this:
+```yaml
+message: Hello world!
+nested:
+  msg: and hello to you
+```
+
+Locales from Transifex have all their translations below one root property, the name of the translation:
 ```yaml
 en_US:
   message: Hello world!
   nested:
     msg: and hello to you
-```
-
-Becomes
-
-```yaml
-message: Hello world!
-nested:
-  msg: and hello to you
 ```
 
 ## Release History

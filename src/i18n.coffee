@@ -1,11 +1,30 @@
 path = require 'path'
 
+class DefaultParser
+  parse: (locale)->
+    locale
+
+# locales from Transifex have one property to name the particular locale, with the
+# translations all below that. E.G. { "en": {"message": "Hello, world!"} }
+class TransifexParser
+  parse: (locale)->
+    keys = Object.keys locale
+    if keys.length is 1 and typeof locale[keys[0]] is 'object'
+      locale[keys[0]]
+    else
+      locale
+
+parsers =
+  'default': new DefaultParser()
+  transifex: new TransifexParser()
+
 module.exports = (grunt) ->
   grunt.registerMultiTask 'i18n', 'Localize Grunt templates', ->
     options = @options
       locales: []
       output: '.'
       base: ''
+      format: 'default'
 
     grunt.verbose.writeflags options, 'Options'
 
@@ -22,18 +41,16 @@ module.exports = (grunt) ->
 
   translateTemplate = (templatePath, localePath, options) ->
     template = grunt.file.read templatePath
-    if /(\.yaml|\.yml)$/.test( localePath )
-      locale = grunt.file.readYAML localePath
+    if /(\.yaml|\.yml)$/.test(localePath)
+      localeFileContent = grunt.file.readYAML localePath
     else
-      locale = grunt.file.readJSON localePath
+      localeFileContent = grunt.file.readJSON localePath
 
-    # locales from Transifex have one property to name the particular locale, with the
-    # translations all below that. E.G. { "en": {"message": "Hello, world!"} }
-    if options.transifex
-      keys = Object.keys locale
-      if keys.length is 1 and typeof locale[keys[0]] is 'object' then locale = locale[keys[0]]
+    parser = parsers[options.format]
+    locale = parser.parse localeFileContent
 
-    templateOptions = data: locale
+    templateOptions =
+      data: locale
     templateOptions.delimiters = options.delimiters if options.delimiters
     grunt.template.process template, templateOptions
 
