@@ -1,22 +1,25 @@
 path = require 'path'
 
-class DefaultParser
-  parse: (locale)->
+"""
+Just returns whatever it is given
+"""
+defaultParser = (locale)->
+  locale
+
+"""
+Locales from Transifex have one property to name the particular locale, with the
+translations all below that. E.G. { "en": {"message": "Hello, world!"} }
+"""
+transifexParser = (locale)->
+  keys = Object.keys locale
+  if keys.length is 1 and typeof locale[keys[0]] is 'object'
+    locale[keys[0]]
+  else
     locale
 
-# locales from Transifex have one property to name the particular locale, with the
-# translations all below that. E.G. { "en": {"message": "Hello, world!"} }
-class TransifexParser
-  parse: (locale)->
-    keys = Object.keys locale
-    if keys.length is 1 and typeof locale[keys[0]] is 'object'
-      locale[keys[0]]
-    else
-      locale
-
 parsers =
-  'default': new DefaultParser()
-  transifex: new TransifexParser()
+  'default': defaultParser
+  transifex: transifexParser
 
 module.exports = (grunt) ->
   grunt.registerMultiTask 'i18n', 'Localize Grunt templates', ->
@@ -29,15 +32,13 @@ module.exports = (grunt) ->
     grunt.verbose.writeflags options, 'Options'
 
     for templatePath in @filesSrc
-      if not grunt.file.isFile templatePath
-        grunt.fail.warn("#{templatePath} is not a file.")
-
-      localePaths = grunt.file.expand options.locales
-      for localePath in localePaths
-        outputPath = generateOutputPath templatePath, localePath, options
-        template = translateTemplate templatePath, localePath, options
-        grunt.verbose.writeln "Translating '#{templatePath}' with locale '#{localePath}' to '#{outputPath}'."
-        grunt.file.write outputPath, template
+      if grunt.file.isFile templatePath
+        localePaths = grunt.file.expand options.locales
+        for localePath in localePaths
+          outputPath = generateOutputPath templatePath, localePath, options
+          template = translateTemplate templatePath, localePath, options
+          grunt.verbose.writeln "Translating '#{templatePath}' with locale '#{localePath}' to '#{outputPath}'."
+          grunt.file.write outputPath, template
 
   translateTemplate = (templatePath, localePath, options) ->
     template = grunt.file.read templatePath
@@ -46,8 +47,7 @@ module.exports = (grunt) ->
     else
       localeFileContent = grunt.file.readJSON localePath
 
-    parser = parsers[options.format]
-    locale = parser.parse localeFileContent
+    locale = parsers[options.format] localeFileContent
 
     templateOptions =
       data: locale
