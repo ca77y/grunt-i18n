@@ -60,6 +60,7 @@ en_US:
 ```
 
 ## Release History
+* 2013-12-06   v0.6.0   Transifex locale format added
 * 2013-12-06   v0.5.0   Can read locals in yaml format.
 * 2013-11-29   v0.4.0   Custom delimiters and localization file existence checks
 * 2013-10-23   v0.3.0   Fix for separator in output path. Add logging messages

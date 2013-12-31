@@ -1,3 +1,7 @@
+v0.6.0:
+  date: 2013-12-31
+  changes:
+    - Add Transifex format for locales.
 v0.5.0:
   date: 2013-12-06
   changes:
