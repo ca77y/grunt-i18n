@@ -1,4 +1,6 @@
 path = require 'path'
+propertiesReader = require 'properties-reader'
+fs = require('fs')
 
 """
 Just returns whatever it is given
@@ -20,6 +22,7 @@ transifexParser = (locale)->
 parsers =
   'default': defaultParser
   transifex: transifexParser
+  messages: defaultParser
 
 module.exports = (grunt) ->
   grunt.registerMultiTask 'i18n', 'Localize Grunt templates', ->
@@ -42,7 +45,10 @@ module.exports = (grunt) ->
 
   translateTemplate = (templatePath, localePath, options) ->
     template = grunt.file.read templatePath
-    if /(\.yaml|\.yml)$/.test(localePath)
+    if options.format == 'messages'
+      defaultMessagesPath = path.join(path.dirname(localePath),path.basename(localePath, path.extname(localePath)))
+      localeFileContent = propertiesReader(defaultMessagesPath).read(fs.readFileSync(localePath, 'utf-8')).path()
+    else if /(\.yaml|\.yml)$/.test(localePath)
       localeFileContent = grunt.file.readYAML localePath
     else
       localeFileContent = grunt.file.readJSON localePath
@@ -55,7 +61,10 @@ module.exports = (grunt) ->
     grunt.template.process template, templateOptions
 
   generateOutputPath = (templatePath, localePath, options) ->
-    localeFolder = path.basename localePath, path.extname localePath
+    if options.format == 'messages'
+      localeFolder = (path.extname localePath).substring(1)
+    else
+      localeFolder = path.basename localePath, path.extname localePath
     filePath = templatePath.slice options.base.length if grunt.util._.startsWith templatePath, options.base
     trimmedFilePath = grunt.util._.trim filePath, '/'
     [options.output, localeFolder, trimmedFilePath].join '/'

@@ -36,6 +36,9 @@
     "peerDependencies": {
         "grunt": "~0.4.0"
     },
+    "dependencies": {
+      "properties-reader": "0.0.6"
+    },
     "keywords": [
         "gruntplugin"
     ]
