@@ -1,4 +1,4 @@
-parsers = require './parsers'
+parsers = require './i18n-parsers'
 
 module.exports = (grunt) ->
   grunt.registerMultiTask 'i18n', 'Localize Grunt templates', ->

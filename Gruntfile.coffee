@@ -26,6 +26,7 @@ module.exports = (grunt) ->
       tasks:
         files:
           'tasks/i18n.js': 'src/i18n.coffee'
+          'tasks/i18n-parsers.js': 'src/i18n-parsers.coffee'
       options:
         bare: true
         header: true
