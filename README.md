@@ -23,7 +23,7 @@ Available options to configure the task.
 #### locales
 Type: String|Array
 
-Path to localization files. Please check the examples in tests. Glob patterns can be used. JSON or YAML format is allowed, /(\.yaml|\.yml)$/ otherwise it's JSON.
+Path to localization files. Please check the examples in tests. Glob patterns can be used.
 
 #### output
 Type: String
