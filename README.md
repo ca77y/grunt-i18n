@@ -1,4 +1,5 @@
 # grunt-i18n [![Build Status](https://travis-ci.org/ca77y/grunt-i18n.png)](https://travis-ci.org/ca77y/grunt-i18n)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/ca77y/grunt-i18n?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 > Internationalization support for grunt.
 
