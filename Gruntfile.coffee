@@ -31,34 +31,46 @@ module.exports = (grunt) ->
         header: true
 
     i18n:
-      happy_path:
+      json_format:
         src: ['test/fixtures/test.tpl.html']
         options:
-          locales: 'test/locales/*.json'
+          locales: 'test/locales/json/*'
           output: 'tmp/json'
-      with_custom_delimiters:
+      json_format_with_custom_delimiters:
         src: ['test/fixtures/test-custom-delimiters.tpl.html']
         options:
-          locales: 'test/locales/*.json'
+          locales: 'test/locales/json/*'
           output: 'tmp/custom'
           delimiters: 'custom'
-      with_yaml:
+      yaml_format:
         src: ['test/fixtures/test.tpl.html']
         options:
-          locales: 'test/locales/*.yaml'
+          locales: 'test/locales/yaml/*'
           output: 'tmp/yaml'
-      with_transifex:
+          format: 'yaml'
+      json_format_with_transifex:
         src: ['test/fixtures/test.tpl.html']
         options:
-          locales: 'test/locales-transifex/*.yaml'
+          locales: 'test/locales/transifex/*'
           output: 'tmp/transifex'
           format: 'transifex'
-      with_messages:
+      properties_format:
         src: ['test/fixtures/test.tpl.html']
         options:
-          locales: 'test/locales/messages.*'
-          output: 'tmp/messages'
-          format: 'messages'
+          locales: 'test/locales/properties/*'
+          output: 'tmp/properties'
+          format: 'properties'
+      custom_parser:
+        src: ['test/fixtures/test.tpl.html']
+        options:
+          locales: 'test/locales/json/*'
+          output: 'tmp/custom_parser'
+          parser:
+            resolveLocale: -> 'en'
+            readLocaleData: ->
+              message: "Hello world!"
+              nested:
+                msg: "and hello to you"
       options:
         base: 'test/fixtures'
 

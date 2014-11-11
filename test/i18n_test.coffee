@@ -53,15 +53,24 @@ exports.i18n =
 
     test.done()
 
-  should_translate_regular_grunt_templates_with_messages_locale: (test) ->
+  should_translate_regular_grunt_templates_with_properties_locale: (test) ->
     test.expect 2
 
     expected = grunt.file.read 'test/expected/en_US/test.tpl.html'
-    actual = grunt.file.read 'tmp/messages/en_US/test.tpl.html'
-    test.equal expected, actual, 'should translate a template to English with locale from Messages'
+    actual = grunt.file.read 'tmp/properties/en_US/test.tpl.html'
+    test.equal expected, actual, 'should translate a template to English with locale from properties'
 
     expected = grunt.file.read 'test/expected/pl_PL/test.tpl.html'
-    actual = grunt.file.read 'tmp/messages/pl_PL/test.tpl.html'
-    test.equal expected, actual, 'should translate a template to Polish with locale from Messages'
+    actual = grunt.file.read 'tmp/properties/pl_PL/test.tpl.html'
+    test.equal expected, actual, 'should translate a template to Polish with locale from properties'
+
+    test.done()
+
+  should_translate_regular_grunt_templates_with_custom_parser: (test) ->
+    test.expect 1
+
+    expected = grunt.file.read 'test/expected/en_US/test.tpl.html'
+    actual = grunt.file.read 'tmp/custom_parser/en/test.tpl.html'
+    test.equal expected, actual, 'should translate a template to English with custom parser'
 
     test.done()

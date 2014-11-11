@@ -19,3 +19,6 @@ npm-debug.log
 
 # Tests results
 tmp
+
+# OSX
+.DS_Store

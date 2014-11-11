@@ -42,22 +42,29 @@ Custom delimiters name to be used instead of the default `<% %>`. See the [grunt
 #### format
 Type: String
 
-Supports 'default' and 'transifex' format.
-
-Default locale just uses what it reads from the file. A valid yaml would look like this:
-```yaml
-message: Hello world!
-nested:
-  msg: and hello to you
-```
+Supports 'json', 'yaml', 'transifex', 'properties'.
 
 Locales from Transifex have all their translations below one root property, the name of the translation:
-```yaml
-en_US:
-  message: Hello world!
-  nested:
-    msg: and hello to you
+```json
+{
+  "en_US": {
+    "message": "Hello world!",
+    "nested": {
+      "msg": "and hello to you"
+    }
+  }
+}
 ```
+
+#### parser
+Type: Object
+
+Custom parser to read locale files. There are 2 functions which have to be provided:
+
+* resolveLocale: (localePath) -> locale - get locale from locale path
+* readLocaleData: (localePath) -> data - read locale file
+
+For example check `src/parsers.coffee`
 
 ## Release History
 * 2013-12-31   v0.6.0   Transifex locale format added
